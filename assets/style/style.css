@@ -4,6 +4,198 @@
     --font-grey: #C7C7C7;
     --accent-color: #3DB278;
 }
+.preloader-container{
+    background-color: #C7C7C7;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    color: var(--fg);
+    font: 1em/1.5 "monospace";
+    height: 100vh;
+    display: grid;
+    top: 0;
+    place-items: center;
+    transition: background-color var(--trans-dur), color var(--trans-dur);
+}
+:root {
+    --hue: 223;
+    --bg: hsl(var(--hue), 10%, 90%);
+    --fg: hsl(var(--hue), 10%, 10%);
+    --primary: hsl(var(--hue), 90%, 55%);
+    --trans-dur: 0.3s;
+    font-size: calc(16px + (20 - 16) * (100vw - 320px) / (1280 - 320));
+}
+
+#loader{
+
+}
+
+.preloader {
+    text-align: center;
+    max-width: 20em;
+    width: 100%;
+
+}
+
+.preloader__text {
+    position: relative;
+    height: 1.5em;
+}
+
+.preloader__msg {
+    animation: msg 1.5s 1.5s linear forwards;
+    position: absolute;
+    width: 100%;
+    font-family: 'Darker Grotesque', sans-serif; /* Add font-family property */
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    top: 70vh;
+    left: 43vw;
+    color: #0a53be;
+}
+
+.preloader__msg--last {
+    animation-direction: reverse;
+    animation-delay: 3s; /* Total preloader duration */
+    visibility: hidden;
+    font-family: 'Darker Grotesque', sans-serif; /* Add font-family property */
+    display: flex;
+    font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+    top: 70vh;
+    left: 48vw;
+    color: #0a53be;
+}
+
+.cart {
+    display: block;
+    width: 8em;
+    height: 8em;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    margin: auto;
+}
+
+.cart__lines,
+.cart__top,
+.cart__wheel1,
+.cart__wheel2,
+.cart__wheel-stroke {
+    animation: cartLines 3s ease-in-out infinite; /* Total preloader duration */
+}
+
+.cart__lines {
+    stroke: #525B3B;
+}
+
+.cart__top {
+    animation-name: cartTop;
+}
+
+.cart__wheel1 {
+    animation-name: cartWheel1;
+    transform: rotate(-0.25turn);
+    transform-origin: 43px 111px;
+}
+
+.cart__wheel2 {
+    animation-name: cartWheel2;
+    transform: rotate(0.25turn);
+    transform-origin: 102px 111px;
+}
+
+.cart__wheel-stroke {
+    animation-name: cartWheelStroke;
+}
+
+.cart__track {
+    stroke: hsla(var(--hue), 10%, 10%, 0.1);
+    transition: stroke var(--trans-dur);
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: hsl(var(--hue), 10%, 10%);
+        --fg: hsl(var(--hue), 10%, 90%);
+    }
+
+    .cart__track {
+        stroke: hsla(var(--hue), 10%, 90%, 0.1);
+    }
+}
+
+/* Animations */
+@keyframes msg {
+    from {
+        opacity: 1;
+        visibility: visible;
+    }
+    99.9% {
+        opacity: 0;
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes cartLines {
+    from,
+    to {
+        opacity: 0;
+    }
+    8%,
+    92% {
+        opacity: 1;
+    }
+}
+
+@keyframes cartTop {
+    from {
+        stroke-dashoffset: -338;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dashoffset: 338;
+    }
+}
+
+@keyframes cartWheel1 {
+    from {
+        transform: rotate(-0.25turn);
+    }
+    to {
+        transform: rotate(2.75turn);
+    }
+}
+
+@keyframes cartWheel2 {
+    from {
+        transform: rotate(0.25turn);
+    }
+    to {
+        transform: rotate(3.25turn);
+    }
+}
+
+@keyframes cartWheelStroke {
+    from,
+    to {
+        stroke-dashoffset: 81.68;
+    }
+    50% {
+        stroke-dashoffset: 40.84;
+    }
+}
 
 body{
     font-family: "Prompt", sans-serif;
